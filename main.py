@@ -5,8 +5,8 @@ from random import uniform
 import matplotlib.pyplot as plt
 import numpy as np
 
-RANGE = 100
-MUTATION_RANGE = 5
+RANGE = 100000
+MUTATION_RANGE = 500
 CSV_PATH = 'input.csv'
 SSE_BREAKPOINT = 50
 INPUT_POINTS_COUNT = 100
@@ -124,8 +124,8 @@ if __name__ == '__main__':
     print('\n Real function:')
     print(f'    y(x) = {sample.a} + {sample.b}*x + {sample.c}*x^2')
 
-    creator = Creator(generations=1000)
-    creator.init_population(size=729)
+    creator = Creator(generations=100)
+    creator.init_population(size=81)
     print(f'\n Generations: {creator.generations}, population size: {creator.population_size}')
 
     creator.evolution()
@@ -139,7 +139,7 @@ if __name__ == '__main__':
     x = np.linspace(0, INPUT_POINTS_COUNT , num=10)
     y = creator.population[0].fitness_function(x)
     y0 = sample.real_function(x)
-    plt.plot(x, y, label='Исходная функция')
-    plt.plot(x, y0, label='Найденная функция')
+    plt.plot(x, y0, label='Исходная функция')
+    plt.plot(x, y, label='Найденная функция')
     plt.legend()
     plt.show()
